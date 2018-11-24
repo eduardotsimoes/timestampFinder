@@ -5,3 +5,9 @@ compiler:
   - clang
 script:
   - g++ main.cpp -o main.o -std=c++11
+jobs:
+  include:
+    - stage : test
+    - script : ./test 1
+    - script : ./test 2
+ 
