@@ -1,0 +1,10 @@
+# Travis example for C++ by Rafał Pocztarski
+# For more languages and info see:
+# https://github.com/rsp/travis-hello#readme
+
+language: cpp
+compiler:
+  - gcc
+  - clang
+script:
+  - g++ main.cpp -o main.o -std=c++11
