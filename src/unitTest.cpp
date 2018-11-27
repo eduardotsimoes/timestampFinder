@@ -48,8 +48,9 @@ int main() {
 
     std::istringstream stream(text);
     
-    
-    // Test finding the time Stamp
+    //////////////////////////////////////////////////
+    // Time Stamp
+    /////////////////////////////////////////////////
 
     // Test #2 line
     assert(readTimestamp(95,stream)==1438387423);
@@ -61,6 +62,8 @@ int main() {
     assert(readTimestamp(250,stream)==1438387425);
 
     //////////////////////////////////////////////////
+    // Binary Search
+    /////////////////////////////////////////////////
 
     std::vector<int> v = {2,3,5,6,7,8,9};
 
@@ -68,51 +71,6 @@ int main() {
 
     assert(binarySearch(2,vv)==0);
 
-
-    //TODO : test not passing
-    std::vector<int> v2 = {2,2,3,5,6,7,8,9};
-
-    SortedCollectionInterface* vv2 = new Collection(v2);
-
-    //assert(binarySearch(2,vv2)==0);
-
-    ///////////////////////////////////////////////
-
-    TimeStampCollection aa(stream);
-
-    std::cout << binarySearch(1438387425, &aa);
-
-    //std::ifstream file( "../hn_logs.tsv",  std::ifstream::binary );
-    std::ifstream file( "../short_file.tsv",  std::ifstream::binary );
-
-    if(file){
-        
-        int to = 1438387423;
-        int from = 1438387429;
-        
-        TimeStampCollection bb(file);
-        int position = binarySearch(to, &bb);
-        std::cout << position;
-  
-        // Change file position;
-        file.seekg (position,  file.beg);
-        int timestamp = 0;
-        std::string buffer, link;
-
-        std::unordered_set<std::string> distinctQueries;
-
-        while (timestamp != from ) {
-
-            std::getline (file,buffer);
-            std::stringstream query(buffer);
-            query >> timestamp >>  link;
-
-            distinctQueries.insert(link);
-        }
-
-        std::cout << "number of distinct entries : " << distinctQueries.size() << "\n"; 
-
-        
-    }
+    /////////////////////////////////////////////////
 
 }
