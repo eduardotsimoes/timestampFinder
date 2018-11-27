@@ -7,11 +7,13 @@ language: cpp
 compiler:
   - gcc
 before_script:
-  - mkdir bin
-  - cd bin
+  - mkdir build
+  - cd build
   - cmake ..
 script:
-  - sonar-scanner
   - make
   - make test
+  - cd ..
+  - sonar-scanner
+
  
