@@ -1,6 +1,6 @@
 addons:
   sonarcloud:
-    organization: "eduardotsimoes" # the key of the org you chose at step #3
+    organization: "eduardotsimoes-github" # the key of the org you chose at step #3
     token:
       secure: 697e09f73c1caabb4a2875cb5ae88ee3a3ced654 # encrypted value of your token
 language: cpp
