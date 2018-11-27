@@ -10,7 +10,8 @@ before_script:
   - mkdir bin
   - cd bin
   - cmake ..
-script: 
+script:
+  - sonar-scanner
   - make
   - make test
  
