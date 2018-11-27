@@ -2,9 +2,13 @@
 language: cpp
 compiler:
   - gcc
-  - clang
+before_script:
+  - mkdir bin
+  - cd bin
+  - cmake ..
+
+script: make && make test
 script:
-  - g++ main.cpp -o main.o -std=c++11
-  - ./test 1
-  - ./test 2
+  - g++ hnStat.cpp -o hnStat -std=c++11
+  - ./test 
  

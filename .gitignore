@@ -1,2 +1,5 @@
 *.o
-*.tsv
+hn_logs.tsv
+hnStat
+bin
+.vscode

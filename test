@@ -1,3 +1,15 @@
 
-exit 0
+echo "[TEST 1 ]: invalid input"
+bin/hnStat bla
+
+echo "[TEST 2 ]: distinct mode short example"
+bin/hnStat distinct --from 1438387430  --to 1438387430  short_file.tsv 
+
+echo "[TEST 3 ]: distinct mode short example"
+bin/hnStat distinct --from 1438548177  --to 1438548188  hn_logs.tsv 
+
+echo "[TEST 4 ]: top mode short example"
+bin/hnStat top 3 --from 1438548177 --to 1438548188  hn_logs.tsv 
+
+
 
