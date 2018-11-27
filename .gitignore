@@ -1,5 +1,5 @@
 *.o
 hn_logs.tsv
 hnStat
-bin
+build
 .vscode
