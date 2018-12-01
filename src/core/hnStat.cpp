@@ -15,23 +15,16 @@
 #include "../commands/TimeStampCollection.hpp"
 #include "../commands/argumentParser.hpp"
 
-
-template<typename T> void print_queue(T& q) {
-    while(!q.empty()) {
-        std::cout << q.top() << " ";
-        q.pop();
-    }
-    std::cout << '\n';
-}
-
 void topQuery(std::ifstream &file,int timestamp , int to, int numberOfTopQueries) {
 
-	std::unordered_map<std::string,int> distinctQueries;
-			
-	//std::cout << "=== Loading entries ==" << "\n";    
+	std::unordered_map<std::string,int> distinctQueries;			
 	std::string buffer, link;
-	
-	while (timestamp != to || file.eof()) {
+
+	///////////////////////////
+	// Counting frequency
+	///////////////////////////
+
+	while (timestamp != to && !file.eof()) {
 
 		std::getline (file,buffer);
 		std::stringstream query(buffer);
@@ -45,6 +38,10 @@ void topQuery(std::ifstream &file,int timestamp , int to, int numberOfTopQueries
 			
 	}
 
+	///////////////////////////
+	// Filling Prioeiry Queue
+	///////////////////////////
+
 	typedef std::pair<std::string,int> pair;
 
 	auto cmp = [](pair left, pair right) { return (left.second) > (right.second);};
@@ -57,6 +54,10 @@ void topQuery(std::ifstream &file,int timestamp , int to, int numberOfTopQueries
 		if(q.size()>numberOfTopQueries)	
 			q.pop();
 	}
+
+	///////////////////////////
+	// Print Prioeiry Queue
+	///////////////////////////
 
 	std::vector<pair> pairs;
 
@@ -75,11 +76,14 @@ void topQuery(std::ifstream &file,int timestamp , int to, int numberOfTopQueries
 void distinctQuery(std::ifstream &file,int timestamp , int to ) {
 
 	std::unordered_set<std::string> distinctQueries;
-	
-	//std::cout << "=== Loading entries ==" << "\n";    
+	  
 	std::string buffer, link;
 
-	while (timestamp != to || file.eof()) {
+	///////////////////////////
+	// Add distinct queries
+	///////////////////////////
+
+	while (timestamp != to && !file.eof()) {
 
 		std::getline (file,buffer);
 		std::stringstream query(buffer);
@@ -88,6 +92,10 @@ void distinctQuery(std::ifstream &file,int timestamp , int to ) {
 		if(distinctQueries.find(link)==distinctQueries.end())
 			distinctQueries.insert(link);
 	}
+
+	///////////////////////////
+	// Print distinct queries
+	///////////////////////////
 
 	std::cout << distinctQueries.size() << "\n";    
 
@@ -105,15 +113,24 @@ int main( int argc , char *argv[]){
 			if (file)
 			{
 
-				//std::cout << "=== Binary search ==" << "\n";
+				///////////////////////////
+				// Binary Search
+				///////////////////////////
+
 				TimeStampCollection ts(file);
 				int position = binarySearch(cnt.from, &ts);
-				//std::cout << " position : " << position << "\n";
+				
+				///////////////////////////
+				// Change File Strem position
+				///////////////////////////
 
-				// Change file position;
 				file.seekg (position,  file.beg);
 				int timestamp = 0;
 				std::string buffer, link;
+
+				///////////////////////////
+				// Enter Distinct/Top block
+				///////////////////////////
 
 				// -1: not defined;
 				//  1: top;
@@ -123,7 +140,7 @@ int main( int argc , char *argv[]){
 					topQuery(file, timestamp , cnt.to, cnt.numberOfTopQueries);
 
 				} else if (cnt.mode==2) {
-					
+
 					distinctQuery(file, timestamp,cnt.to);
 
 				} else {
