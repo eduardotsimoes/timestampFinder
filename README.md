@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.com/eduardotsimoes/timestampFinder.svg?branch=master)](https://travis-ci.com/eduardotsimoes/timestampFinder)
 
 
-##To compile the code:
+## To compile the code:
 
 ```
 mkdir build && cd build;
@@ -11,11 +11,11 @@ camke ..
 make
 ```
 
-##Algorithm:
+## Algorithm:
 
 1. Search the postion in the file that has the timestamp defined from the keyword "FROM" using a Binary search. Time Complexity: O(log(n)). Space Complexity : ?
 
-###Distinct mode:
+### Distinct mode:
 
 We use the data sturcture std::unstructured_set to keep distinct queries. This date structure is a hash_map;
 
@@ -23,7 +23,7 @@ We use the data sturcture std::unstructured_set to keep distinct queries. This d
 3. Print the disctinct queries
 
 
-###Top mode:
+### Top mode:
 
 We use a std::unstructured_map to count the frequency of each query.
 After, to get the top entries, we use a priority queue.
