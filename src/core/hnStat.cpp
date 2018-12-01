@@ -17,7 +17,10 @@
 
 void topQuery(std::ifstream &file,int timestamp , int to, int numberOfTopQueries) {
 
-	std::unordered_map<std::string,int> distinctQueries;			
+	std::unordered_map<std::string,int> distinctQueries;
+
+	/// TODO : Ideally the map should be reserved to avoid realocation. So, add a clever way to reserve the container.	
+
 	std::string buffer, link;
 
 	///////////////////////////
@@ -39,7 +42,7 @@ void topQuery(std::ifstream &file,int timestamp , int to, int numberOfTopQueries
 	}
 
 	///////////////////////////
-	// Filling Prioeiry Queue
+	// Filling Priority Queue
 	///////////////////////////
 
 	typedef std::pair<std::string,int> pair;
@@ -56,7 +59,7 @@ void topQuery(std::ifstream &file,int timestamp , int to, int numberOfTopQueries
 	}
 
 	///////////////////////////
-	// Print Prioeiry Queue
+	// Print Priority Queue
 	///////////////////////////
 
 	std::vector<pair> pairs;
